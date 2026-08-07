@@ -1,0 +1,16 @@
+# Operating-system files
+.DS_Store
+Thumbs.db
+
+# Obsidian local state and recycle bin
+财税视频号内容库/.obsidian/workspace*.json
+财税视频号内容库/.trash/
+
+# Temporary and editor files
+*.tmp
+*.temp
+*.swp
+~$*
+
+# Local API credentials (optional; never commit)
+JustOneAPI-token.txt
