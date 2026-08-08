@@ -4,13 +4,20 @@
 
 ## 仓库结构
 
-- `财税视频号内容库/`：Obsidian 内容库，保存历史内容、内容地图、选题规划、复盘与素材。
+- `内容库/`：Obsidian 内容库，保存历史内容、内容地图、选题规划、复盘与素材。
 - `.codex/skills/daily-video-account-planning/`：账号专属的选题、文案、风险检查与发布记录流程。
 - `JustOneAPI-token.txt`：可选本地检索凭据；不创建、不提交、不在对话中展示凭据内容。
 
-## 工作流程
+## 唯一流程入口
 
-1. 每次选题前重新扫描历史内容库，检查近期重复与内容缺口。
-2. 结合本地咨询问题和已核验的公开信息，提出早、中、晚三个选题及两个备选。
-3. 用户确认具体选题后，再生成文案与内容风险评估。
-4. 仅在用户确认已发布并要求归档后，写入历史内容并同步更新内容地图、复盘和缺口分析。
+具体执行顺序、确认节点、API 降级、文案生成和发布后处理，统一由 `.codex/skills/daily-video-account-planning/SKILL.md` 负责。本 README 只保留项目结构和规则来源，不复制执行细节。
+
+流程阶段为：
+
+`扫描知识库 → 规划选题 → 用户确认 → 生成文案 → 用户确认发布 → 用户确认归档 → 更新索引与复盘`
+
+关键规则来源：
+
+- 历史扫描和发布记录：`.codex/skills/daily-video-account-planning/references/obsidian-history-vault.md`
+- 文案生成：`.codex/skills/daily-video-account-planning/references/original-copywriting-guide.md`
+- 历史归档：`内容库/00-首页与维护规则/历史内容归档规范.md`
