@@ -1,4 +1,4 @@
 interface:
-  display_name: "广州财税视频号日更"
-  short_description: "基于本地内容库的公司注册与代理记账获客流程"
-  default_prompt: "使用 $daily-video-account-planning 扫描本地历史库并安排今天早中晚的公司注册、代理记账视频号内容。"
+  display_name: "广州财税视频号内容获客"
+  short_description: "基于本地内容资产的公司注册与代理记账选题、文案与归档工作流"
+  default_prompt: "使用 $daily-video-account-planning 基于当前历史内容、灵感库和选题池，提供 5 个公司注册或代理记账视频号选题方案。"
