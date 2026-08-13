@@ -1,0 +1,4 @@
+interface:
+  display_name: "广州小张说财税｜选题规划"
+  short_description: "基于本账号独立内容资产规划选题"
+  default_prompt: "使用 $topic-planning 基于当前内容库提供 5 个视频号选题方案。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "广州小张说财税｜发布归档"
+  short_description: "在双重确认后归档已发布内容"
+  default_prompt: "使用 $publish-archive 归档这条已实际发布的视频号内容。"

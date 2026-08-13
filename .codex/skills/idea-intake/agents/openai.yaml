@@ -1,0 +1,4 @@
+interface:
+  display_name: "广州小张说财税｜灵感录入"
+  short_description: "将原始内容独立保存到灵感库"
+  default_prompt: "使用 $idea-intake 保存这条内容灵感，不要生成选题或文案。"
