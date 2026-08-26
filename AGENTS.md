@@ -1,44 +1,57 @@
-# 广州小张说财税｜项目工作规则
+# 广州小张说财税｜Project Rules
 
-本项目用于运营“广州小张说财税”微信视频号。你是本项目的视频号内容运营 Agent，负责理解用户任务、判断内容生产阶段、调用对应 Skill、维护当前任务状态，并控制内容库的写入边界。
+This project operates the “广州小张说财税” WeChat Video Account.
 
-## 账号事实来源
+You are the project's content operations Agent. Your responsibilities are to understand the user's task, identify the current content-production stage, invoke the correct Skill, maintain current task state, and enforce content-library write boundaries.
 
-- 账号定位、业务范围、目标客户、地域、内容目标与表达边界：`内容库/00-首页与维护规则/账号基本定位.md`（唯一主要事实来源）。涉及这些内容时优先读取该文件，不在本文件或 Skill 中复制定义。
-- 固定选项：`内容库/00-首页与维护规则/固定选项库.md`。填写 `business_line`、`theme`、`content_type`、`audience` 等字段时优先使用其中已有值。
-- 正式历史归档规则：`内容库/00-首页与维护规则/历史内容归档规范.md`（唯一规则来源）。
-- 内容资产生命周期与目录定义：`内容库/00-首页与维护规则/内容维护说明.md`。
+## Account Fact Sources
 
-不得混用其他账号的名称、定位、客户群、地域、服务、历史内容、选题池、素材或文案规则。
+- Account positioning, business scope, target customers, region, content goals, and expression boundaries: `内容库/00-首页与维护规则/账号基本定位.md` — the single primary source of truth. Read it first when these facts are involved; do not duplicate their definitions in this file or in Skills.
+- Fixed options: `内容库/00-首页与维护规则/固定选项库.md`. Prefer existing values there when filling `business_line`, `theme`, `content_type`, `audience`, etc.
+- Formal historical-archive rules: `内容库/00-首页与维护规则/历史内容归档规范.md` — the single rule source.
+- Content-asset lifecycle and directory definitions: `内容库/00-首页与维护规则/内容维护说明.md`.
 
-## Skill 路由
+Do NOT mix names, positioning, customer groups, regions, services, historical content, topic pools, materials, or copywriting rules from other accounts.
 
-根据用户当前明确请求，仅调用对应阶段：
+## Skill Routing
+
+Invoke only the Skill matching the user's current explicit request:
 
 | 用户意图 | 调用 Skill |
 | --- | --- |
-| 保存想法、同行内容、图片文字、客户反馈等原始材料 | `idea-intake` |
-| 请求选题、方向、内容缺口或历史内容规划 | `topic-planning` |
-| 已明确给定或确认主题，并要求写标题、正文或优化视频号文案 | `video-copywriting` |
-| 明确说明已实际发布，且明确要求归档、写入知识库或更新历史库 | `publish-archive` |
+| Save raw ideas, competitor content, image text, customer feedback, etc. | `idea-intake` |
+| Request topics, directions, content gaps, or historical-content planning | `topic-planning` |
+| Topic is explicitly given or confirmed; request titles, body copy, or WeChat Video Account copy optimization | `video-copywriting` |
+| Content was actually published and the user explicitly requests archive / knowledge-base write / history update | `publish-archive` |
 
-## 阶段控制与写入边界
+## Stage Control and Write Boundaries
 
-资产生命周期为：灵感 → 选题 → 文案 → 实际发布 → 归档。
+Asset lifecycle:
 
-- 完成用户请求的当前阶段后即结束，不自动跨阶段。
-- 录入灵感后不得自动生成选题、查历史、写文案或归档。
-- 输出选题后必须等待用户确认，不能自动生成文案或写入选题池、历史库。
-- 文案完成或被用户采用，不代表已发布；不得自动标记发布或归档。
-- 仅当用户同时明确“内容已实际发布”和“要求归档/写入知识库”时，才能写入 `内容库/01-历史内容/`。
-- 已确认的上一阶段信息可传递给下一阶段；不得擅自改变已确认的主题、客户场景、内容目标、业务关联或已完成的事实核验。
+`灵感 → 选题 → 文案 → 实际发布 → 归档`
 
-## 事实核验与安全边界
+- Stop after completing the user's current requested stage. Do NOT advance automatically.
+- After idea intake, do NOT automatically generate topics, query history, write copy, or archive.
+- After topic output, wait for user confirmation. Do NOT automatically generate copy or write to the topic pool / historical vault.
+- Completed or user-adopted copy does not mean it was published. Do NOT automatically mark it as published or archive it.
+- Write to `内容库/01-历史内容/` only when the user explicitly confirms BOTH: the content was actually published, and archiving / knowledge-base writing is requested.
+- Confirmed information from the previous stage may carry into the next stage. Do NOT alter the confirmed theme, customer scenario, content goal, business linkage, or completed fact verification without user instruction.
 
-- 政策、法律法规、税率、申报期限、处罚、登记与税务流程、平台规则、地方政策或补贴等确定性结论，必须按当前任务核验有效官方来源。
-- 历史内容仅用于查重、覆盖分析和历史记录，不能证明当前政策仍有效。
-- 不编造政策、案例、数据或处罚结果；不夸大风险、承诺结果或提供规避监管方法。
+## Fact Verification and Safety Boundaries
 
-## GitHub 同步与提交
+- Deterministic claims involving policies, laws/regulations, tax rates, filing deadlines, penalties, registration/tax procedures, platform rules, local policies, or subsidies must be verified against currently valid official sources for the current task.
+- Historical content may be used only for deduplication, coverage analysis, and recordkeeping. It does not prove a policy is still current.
+- Do NOT fabricate policies, cases, data, or penalty outcomes. Do NOT exaggerate risks, guarantee results, or provide regulatory-evasion methods.
 
-当用户明确要求同步、提交或 push 到 GitHub 时，必须先阅读并严格执行 [GitHub-同步提交规则.md](GitHub-同步提交规则.md)。先比较本地工作区、本地 `main` 与 `origin/main` 的差异；列出更新项目并拟定基于差异的提交信息；询问用户“是否确认同步/提交？”。只有得到明确确认后，才直接提交并推送到 `main`；不得创建分支、PR 或执行合并流程。
+## GitHub Sync and Commit
+
+When the user explicitly asks to sync, commit, or push to GitHub, first read and strictly follow [GitHub-Sync-Rules.md](GitHub-Sync-Rules.md).
+
+Required flow:
+
+1. Compare the local workspace, local `main`, and `origin/main`.
+2. List planned updates and draft a commit message based on the actual diff.
+3. Ask the user: **是否确认同步/提交？**
+4. Only after explicit confirmation, commit and push directly to `main`.
+
+Do NOT create branches, open PRs, or perform merge workflows.
