@@ -1,1029 +1,1052 @@
 ---
 name: video-copywriting
-description: Generate high-impact, socially shareable WeChat Video Account text-broadcast copy from a confirmed topic. Dynamically inherit each project's account positioning, audience, persona, business context, tone, content boundaries, and conversion goals. Use for titles,正文, or complete copy after a topic is confirmed. Do not use for topic planning, inspiration intake, publication archiving, or visual production.
+description: Generate high-impact, socially shareable WeChat Video Account text-broadcast copy from a confirmed topic. Dynamically inherit each project's account positioning, audience, persona, business context, tone, content boundaries, and conversion goals. Use for titles, 正文, or complete copy after a topic is confirmed. Do not use for topic planning, inspiration intake, publication archiving, or visual production.
 ---
 
-# 微信视频号文字播报文案生成
+# WeChat Video Account Text-Broadcast Copywriting（微信视频号文字播报文案生成）
 
-## 1. 职责范围
+## 1. Scope of Responsibility（职责范围）
 
-本 Skill 只负责根据已确认主题，生成适合微信视频号文字播报形式的正式内容。
+This Skill ONLY generates finalized WeChat Video Account text-broadcast content（文字播报内容）from a topic that has already been confirmed.
 
-根据用户要求交付：
+Deliver only what the user requests, including:
 
-- 标题
-- 短标题
-- 正文
-- 完整文案
-- 指定版本或表达方向
+- Title（标题）
+- Short title（短标题）
+- Main copy（正文）
+- Complete copy package（完整文案）
+- A specified version or expression direction（指定版本或表达方向）
 
-如果主题来自上一步确认结果，必须继承：
+If the topic comes from a previously confirmed step, the Skill MUST inherit all confirmed context, including:
 
-- 核心主题
-- 目标受众
-- 受众场景
-- 内容目的
-- 服务或业务关联
-- 已核验事实
-- 已确认数据
-- 已确认表达边界
+- Core topic（核心主题）
+- Target audience（目标受众）
+- Audience scenario（受众场景）
+- Content objective（内容目的）
+- Related service or business context（服务或业务关联）
+- Verified facts（已核验事实）
+- Confirmed data（已确认数据）
+- Confirmed expression boundaries（已确认表达边界）
 
-交付后结束，不得自动：
+After delivering the requested copy, STOP. Do NOT automatically:
 
-- 重新规划选题
-- 扩展无关主题
-- 标记内容已发布
-- 写入历史内容库
-- 更新内容地图
-- 创建归档记录
-- 制作视觉或视频
-
----
-
-## 2. 动态读取账号定位
-
-创作前必须先确定当前项目的账号定位来源。
-
-按以下顺序查找：
-
-1. 当前项目 `AGENTS.md` 指定的账号定位文件
-2. 当前项目运营配置指定的定位文件
-3. 项目中名称明确的账号定位、品牌定位或人物设定文件
-4. 当前连续任务中用户已经明确提供的账号信息
-
-如果找到唯一定位来源，必须读取并执行。
-
-如果存在多个可能的账号定位且无法确定当前账号，不得自行选择，应先请求用户确认。
-
-如果没有定位文件，只能使用用户当前明确提供的信息，不得自行虚构账号身份、人设、业务范围或目标受众。
+- Re-plan topics（重新规划选题）
+- Expand into unrelated topics（扩展无关主题）
+- Mark content as published
+- Write to historical content libraries
+- Update a content map
+- Create archive records
+- Produce visuals or video
 
 ---
 
-## 3. 必须动态继承的账号参数
+## 2. Dynamically Load Account Positioning（动态读取账号定位）
 
-从当前账号定位中识别：
+Before writing, the Skill MUST first determine the positioning source for the current account（当前项目的账号定位来源）.
 
-- 账号类型
-- 内容目的
-- 平台与内容形式
-- 核心业务或内容方向
-- 目标受众
-- 受众理解能力
-- 受众熟悉的生活或业务语言
-- 人物身份
-- 人物经历
-- 人物性格
-- 客户或受众关系
-- 表达强度
-- 情绪风格
-- 幽默与吐槽习惯
-- 专业术语使用程度
-- 标题气质
-- 互动方式
-- 转化目标
-- 明确禁止的文风
-- 事实与合规边界
+Search in this order:
 
-这些参数必须实际影响：
+1. The account-positioning file explicitly specified by the current project's `AGENTS.md`
+2. The positioning file specified by the current project's operational configuration
+3. A clearly named account-positioning, brand-positioning, or persona-definition file in the project
+4. Account information explicitly provided by the user in the current continuous task
 
-- 标题措辞
-- 第一屏表达
-- 正文结构
-- 情绪强度
-- 信息解释方式
-- 句子长短
-- 专业程度
-- 互动方式
-- 结尾语气
-- 整体人物辨识度
+If exactly one valid positioning source is found, the Skill MUST read and apply it.
 
-不得把任意账号生成成统一的标准文风。
+If multiple plausible positioning sources exist and the current account cannot be uniquely determined, the Skill MUST NOT choose one by itself. Ask the user to confirm.
 
-原则：
-
-> 账号定位决定谁在说、对谁说、为什么说、用什么方式说。
-
-> Skill只负责传播结构、信息组织和质量控制。
+If no positioning file exists, use ONLY information explicitly provided by the user in the current task. Do NOT invent account identity, persona, business scope, or target audience.
 
 ---
 
-## 4. 内容载体
+## 3. Account Parameters That MUST Be Dynamically Inherited（必须动态继承的账号参数）
 
-本 Skill生成微信视频号文字播报内容：
+Identify from the current account positioning:
 
-- 文案逐行或逐段出现
-- 可以配合模拟打字或字幕效果
-- 用户主要通过阅读获取信息
-- 不依赖真人语气、表情和声音完成表达
+- Account type（账号类型）
+- Content objective（内容目的）
+- Platform and content format（平台与内容形式）
+- Core business or content direction（核心业务或内容方向）
+- Target audience（目标受众）
+- Audience comprehension level（受众理解能力）
+- Everyday or business language familiar to the audience（受众熟悉的生活或业务语言）
+- Persona identity（人物身份）
+- Persona experience（人物经历）
+- Persona personality（人物性格）
+- Relationship with customers/audience（客户或受众关系）
+- Expression intensity（表达强度）
+- Emotional style（情绪风格）
+- Humor / teasing / 吐槽 habits（幽默与吐槽习惯）
+- Degree of professional terminology（专业术语使用程度）
+- Title style（标题气质）
+- Interaction style（互动方式）
+- Conversion objective（转化目标）
+- Explicitly prohibited writing styles（明确禁止的文风）
+- Fact and compliance boundaries（事实与合规边界）
 
-因此必须按视觉阅读内容生成。
+These parameters MUST materially affect:
 
-不得默认写成：
+- Title wording
+- First-screen expression（第一屏表达）
+- Main-copy structure（正文结构）
+- Emotional intensity
+- Explanation method
+- Sentence length
+- Professional depth
+- Interaction style
+- Ending tone
+- Overall persona recognizability（人物辨识度）
 
-- 真人口播演讲稿
-- 长篇文章
-- 官方通知
-- 培训材料
-- 咨询报告
-- 知识百科
-- 学术说明
-- 标准AI总结稿
+Do NOT flatten all accounts into one standardized writing style.
 
-账号定位另有明确要求时，以账号定位为准。
+Principle:
 
----
+> 账号定位决定谁在说、对谁说、为什么说、用什么方式说。  
+> Account positioning determines who is speaking, to whom, why, and how.
 
-## 5. 平台传播假设
-
-微信视频号内容可能通过社交关系链、朋友互动和分享继续传播。
-
-具体推荐权重不作为确定算法事实，但生成内容时必须检查：
-
-> 用户看完以后，是否获得了值得提醒、讨论或分享的信息。
-
-分享动力应主要来自内容本身，例如：
-
-- 获得了原来不知道的信息
-- 发现事情与原来理解不同
-- 意识到后果、收益或影响被低估
-- 发现问题会继续累积或扩大
-- 内容可以帮助解释一个争议
-- 内容可以帮助他人作出判断
-- 内容具有身份表达或社交提醒价值
-
-不得机械要求每篇内容指定转发对象。
-
-不得依赖强制转发、强制收藏或情绪绑架制造分享。
-
----
-
-## 6. 核心传播链路
-
-默认传播链路：
-
-> 看到  
-> → 被具体信息击中  
-> → 产生情绪或认知变化  
-> → 发现有效信息差  
-> → 快速看懂原因和影响  
-> → 产生分享、行动或进一步了解的意愿  
-> → 建立账号信任  
-> → 接近账号转化目标
-
-执行优先级：
-
-> 事实准确  
-> → 安全与平台边界  
-> → 有效信息差  
-> → 真实影响  
-> → 情绪与传播强度  
-> → 分享价值  
-> → 阅读效率  
-> → 人物辨识度  
-> → 转化能力  
-> → 信息完整度
-
-不得为了讲得完整，牺牲停留和阅读效率。
+> Skill只负责传播结构、信息组织和质量控制。  
+> The Skill is responsible only for communication structure, information organization, and quality control.
 
 ---
 
-## 7. 已知信息与未知信息
+## 4. Content Medium（内容载体）
 
-创作前必须区分：
+This Skill generates WeChat Video Account text-broadcast content（微信视频号文字播报内容）:
 
-### 受众已经知道的内容
+- Copy appears line by line or paragraph by paragraph
+- It may be paired with simulated typing or subtitle effects
+- Users mainly receive information by reading
+- The content must not depend on a real person's voice, facial expressions, or vocal performance
 
-受众能够直接观察、已经经历或普遍了解的现象。
+Therefore, the copy MUST be optimized for visual reading（视觉阅读）.
 
-这类信息只能用于建立场景，不得作为全文主要价值。
+Do NOT default to writing:
 
-### 受众不知道或低估的内容
+- A spoken-camera script（真人口播演讲稿）
+- A long-form article
+- An official notice
+- Training material
+- A consulting report
+- An encyclopedia-style explanation
+- Academic exposition
+- A generic AI-summary style draft（标准AI总结稿）
 
-优先寻找：
-
-- 被忽略的后果
-- 被忽略的收益
-- 关键成立条件
-- 隐藏成本
-- 风险或影响如何累积
-- 表面现象与真实结果的差异
-- 当前行为对后续结果的影响
-- 一个环节如何传导到其他环节
-- 为什么常见做法未必得到预期结果
-- 什么情况下原有判断会失效
-
-每篇内容必须至少提供一个有效信息差。
-
-如果主题没有足够事实支撑有效信息差：
-
-- 不得虚构
-- 不得硬写高压内容
-- 应提示当前主题缺少传播支点
-- 建议补充数据、条件、案例、对比或结果依据
+If the current account positioning explicitly requires otherwise, follow the account positioning.
 
 ---
 
-## 8. 情绪驱动原则
+## 5. Platform Distribution Assumptions（平台传播假设）
 
-本 Skill允许使用情绪增强传播，但情绪必须由真实信息产生。
+WeChat Video Account content may continue spreading through social relationships, friend interactions, and sharing.
 
-根据账号定位和主题性质，动态选择：
+Do NOT treat any specific recommendation weight as a confirmed algorithmic fact. However, before finalizing content, ALWAYS check:
 
-- 风险感
-- 紧迫感
-- 焦虑感
-- 好奇感
-- 机会感
-- 损失感
-- 反差感
-- 荒诞感
-- 身份认同
-- 安全感
-- 获得感
+> 用户看完以后，是否获得了值得提醒、讨论或分享的信息。  
+> After reading, did the user gain information worth reminding others about, discussing, or sharing?
 
-不得默认所有账号都使用焦虑或恐慌。
+Sharing motivation SHOULD come primarily from the content itself, for example:
 
-当账号定位、内容方向和事实适合风险表达时，可以制造：
+- The audience learns something they did not know
+- They discover reality differs from prior understanding
+- They realize a consequence, benefit, or impact was underestimated
+- They understand that a problem may accumulate or expand
+- The content helps explain a dispute or misunderstanding
+- The content helps others make a judgment
+- The content carries identity-expression or social-reminder value
 
-> 有事实依据、有条件边界、有具体影响的真实焦虑。
+Do NOT mechanically require every post to name a person to forward it to.
 
-当账号不适合风险表达时，应选择符合其定位的其他情绪动力。
+Do NOT rely on forced forwarding, forced saving, or emotional coercion to manufacture sharing.
 
 ---
 
-## 9. 情绪来源
+## 6. Core Communication Chain（核心传播链路）
 
-优先从以下结构中选择最适合当前主题的一种或两种。
+Default communication chain:
 
-### 结果影响
+> See（看到）  
+> → Get hit by specific information（被具体信息击中）  
+> → Experience an emotional or cognitive shift（产生情绪或认知变化）  
+> → Discover a meaningful information gap（发现有效信息差）  
+> → Quickly understand the cause and impact（快速看懂原因和影响）  
+> → Develop willingness to share, act, or learn more（产生分享、行动或进一步了解的意愿）  
+> → Build trust in the account（建立账号信任）  
+> → Move closer to the account's conversion objective（接近账号转化目标）
 
-直接说明最终会影响什么。
+Execution priority:
 
-### 累积放大
+> Fact accuracy（事实准确）  
+> → Safety and platform boundaries（安全与平台边界）  
+> → Effective information gap（有效信息差）  
+> → Real impact（真实影响）  
+> → Emotional / distribution intensity（情绪与传播强度）  
+> → Share value（分享价值）  
+> → Reading efficiency（阅读效率）  
+> → Persona recognizability（人物辨识度）  
+> → Conversion capability（转化能力）  
+> → Information completeness（信息完整度）
 
-说明问题或机会如何随时间、次数、规模或条件变化而扩大。
-
-### 认知反差
-
-展示受众原有判断与实际结果之间的差异。
-
-### 链条传导
-
-说明一个环节如何影响后续多个环节。
-
-### 机会损失
-
-说明没有及时理解或行动可能错过什么。
-
-### 决策冲突
-
-说明不同选择会产生什么不同结果。
-
-### 不确定性
-
-说明真正的问题可能不是当下现象，而是后续无法判断、无法说明或无法控制。
-
-任何情绪都不得脱离事实独立存在。
+Do NOT sacrifice retention and reading efficiency merely to make the content more complete.
 
 ---
 
-## 10. 表达强度
+## 7. Known vs. Unknown Information（已知信息与未知信息）
 
-### Level 1｜稳健型
+Before writing, distinguish between:
 
-适用于：
+### What the audience already knows（受众已经知道的内容）
 
-- 事实条件不完整
-- 高敏感主题
-- 结果无法确认
-- 账号定位偏理性克制
-- 用户明确要求稳健表达
+These are phenomena the audience can directly observe, has already experienced, or generally understands.
 
-要求：
+Such information may be used ONLY to establish context. It MUST NOT be the main value of the entire piece.
 
-- 保留具体影响
-- 优先说明判断条件
-- 不主动放大最坏结果
-- 不堆叠高压表达
-- 不制造无依据的紧迫感
+### What the audience does not know or underestimates（受众不知道或低估的内容）
 
-### Level 2｜常规传播型
+Prioritize:
 
-默认等级。
+- Overlooked consequences
+- Overlooked benefits
+- Key conditions required for the conclusion to hold（关键成立条件）
+- Hidden costs
+- How risk or impact accumulates
+- Difference between surface appearance and real outcome
+- How current behavior affects later outcomes
+- How one link in a chain propagates into later links
+- Why common practices may fail to produce expected outcomes
+- Under what conditions an existing judgment becomes invalid
 
-要求：
+Every piece MUST provide at least one effective information gap（有效信息差）.
 
-- 第一屏出现具体影响、利益、风险或认知冲突
-- 至少提供一个有效信息差
-- 展开一条清晰的影响链
-- 条件和边界及时说明
-- 不使用无意义缓冲削弱力度
-- 不依赖标点和口号制造情绪
+If the topic lacks sufficient factual support for an effective information gap:
 
-### Level 3｜进攻测试型
-
-仅适用于：
-
-- 用户明确要求提高传播强度
-- 账号定位允许强表达
-- 主题事实已经核验
-- 结果和条件有充分依据
-
-要求：
-
-- 最强有效信息优先出现
-- 减少背景和铺垫
-- 单篇集中1—2个核心压力点或利益点
-- 必须保留会影响结论的关键条件
-- 不得通过虚假事实提高攻击性
-
-原则：
-
-> 表达更强，是信息和后果更直接。
-
-> 不是情绪和措辞更夸张。
+- Do NOT fabricate
+- Do NOT force a high-pressure version
+- Explicitly indicate that the topic currently lacks a strong distribution hook（传播支点）
+- Recommend adding data, conditions, cases, comparisons, or outcome evidence
 
 ---
 
-## 11. 第一屏规则
+## 8. Emotional-Drive Principles（情绪驱动原则）
 
-第一屏承担：
+Emotion may be used to strengthen distribution, but emotion MUST arise from real information.
 
-- 停留
-- 对号入座
-- 情绪启动
-- 信息差建立
+Dynamically select based on account positioning and topic nature:
 
-根据主题动态选择结构：
+- Sense of risk（风险感）
+- Urgency（紧迫感）
+- Anxiety（焦虑感）
+- Curiosity（好奇感）
+- Opportunity（机会感）
+- Loss（损失感）
+- Contrast（反差感）
+- Absurdity（荒诞感）
+- Identity resonance（身份认同）
+- Security（安全感）
+- Gain / benefit（获得感）
 
-### 结构一
+Do NOT assume every account should use anxiety or fear.
 
-> 熟悉的行为或场景  
-> + 被低估的结果
+When account positioning, topic direction, and verified facts support risk-based expression, the Skill MAY create:
 
-### 结构二
+> 有事实依据、有条件边界、有具体影响的真实焦虑。  
+> Real anxiety grounded in facts, bounded by conditions, and tied to specific impacts.
 
-> 表面现象  
-> + 真实结果
-
-### 结构三
-
-> 一个小问题  
-> + 放大后的影响
-
-### 结构四
-
-> 明确数字或事实  
-> + 认知冲突
-
-### 结构五
-
-> 常见判断  
-> + 直接纠正
-
-第一屏必须优先使用当前账号受众能够立即理解的对象、行为和结果。
-
-不得使用只有情绪、没有信息的开场。
-
-不得以空泛背景、寒暄、课程式引入或模板化提醒开场。
-
-第一屏可以暂不展开全部条件，但不得隐瞒会改变结论的关键条件。
+If risk-based expression does not fit the account, choose another emotional driver consistent with the positioning.
 
 ---
 
-## 12. 正文逻辑
+## 9. Sources of Emotion（情绪来源）
 
-正文默认使用单点高密度结构：
+Choose one or two structures that best fit the topic.
 
-> 具体场景或认知冲突  
-> → 核心判断与必要条件  
-> → 一个结果或行动方向
+### Outcome Impact（结果影响）
+State directly what the final impact affects.
 
-生成前应在内部判断：
+### Accumulation / Amplification（累积放大）
+Explain how a problem or opportunity expands with time, frequency, scale, or conditions.
 
-1. 受众已经知道什么？
-2. 本篇新增的信息是什么？
-3. 为什么会产生这个结果？
-4. 结果会影响什么？
-5. 受众现在最需要判断或检查什么？
+### Cognitive Contrast（认知反差）
+Show the gap between the audience's original belief and the actual result.
 
-这些问题用于确保逻辑成立，不要全部展开写进正文。最终正文只保留对当前核心判断必要的信息。
+### Chain Propagation（链条传导）
+Explain how one link affects multiple downstream links.
 
-不得停留在平淡复述现象，也不得为了完整而同时展开多条逻辑。
+### Opportunity Loss（机会损失）
+Explain what may be missed by failing to understand or act in time.
 
----
+### Decision Conflict（决策冲突）
+Explain how different choices create different outcomes.
 
-## 13. 正文模式
+### Uncertainty（不确定性）
+Show that the real problem may not be the current symptom, but the later inability to judge, explain, or control the situation.
 
-根据主题自动选择，不得长期固定同一种模板。
-
-### 结果直击型
-
-> 结果 → 原因 → 条件 → 影响范围 → 判断方向
-
-### 认知翻转型
-
-> 常见判断 → 直接修正 → 关键条件 → 真实结果
-
-### 累积升级型
-
-> 当前现象 → 累积方式 → 放大结果 → 当前检查点
-
-### 链条传导型
-
-> 起点问题 → 中间影响 → 最终落点 → 判断方向
-
-### 数字对比型
-
-> 数字或比例 → 直接差异 → 隐藏条件 → 最终结果
-
-### 决策比较型
-
-> 两种选择 → 核心差异 → 各自结果 → 判断标准
-
-### 事件影响型
-
-仅在事件、政策或平台变化已经核验时使用：
-
-> 真实事件 → 影响对象 → 发生变化 → 具体影响 → 当前判断
-
-不得为了套用事件模式虚构趋势、变化、行动或结果。
+Emotion MUST NOT exist independently of facts.
 
 ---
 
-## 14. 信息密度
+## 10. Expression Intensity（表达强度）
 
-每句话必须至少承担一种作用：
+### Level 1 | Conservative / Steady（稳健型）
 
-- 提供事实
-- 给出数字
-- 指明对象
-- 描述行为
-- 提供信息差
-- 说明原因
-- 给出条件
-- 展开影响
-- 提供判断
-- 指出行动方向
+Use when:
 
-删除一句话后，如果受众获得的信息没有减少，应优先删除。
+- Factual conditions are incomplete
+- The topic is highly sensitive
+- The outcome cannot be confirmed
+- Account positioning is rational and restrained
+- The user explicitly requests cautious wording
 
-低价值内容包括：
+Requirements:
 
-- 空泛提醒
-- 重复结论
-- 无意义铺垫
-- 纯情绪表达
-- 不产生新信息的转折
-- 与核心判断无关的背景
-- 不承担信息作用的人设表演
-- 对受众已知现象的重复说明
+- Preserve specific impacts
+- Explain judgment conditions first
+- Do not proactively amplify worst-case outcomes
+- Do not stack high-pressure language
+- Do not manufacture unsupported urgency
 
----
+### Level 2 | Standard Distribution（常规传播型）
 
-## 15. 受众语言
+DEFAULT level.
 
-表达必须从当前账号定位中动态继承。
+Requirements:
 
-优先使用：
+- The first screen MUST contain a specific impact, benefit, risk, or cognitive conflict
+- Provide at least one effective information gap
+- Develop one clear impact chain
+- State conditions and boundaries in time
+- Do not weaken the copy with meaningless softeners
+- Do not rely on punctuation or slogans to manufacture emotion
 
-- 目标受众日常使用的语言
-- 目标受众熟悉的对象
-- 真实生活或业务场景
-- 能够直接感知的结果
-- 符合人物身份的判断方式
+### Level 3 | Aggressive Test（进攻测试型）
 
-专业表达应优先转换为受众能够理解的：
+Use ONLY when ALL relevant conditions are satisfied:
 
-> 行为 → 变化 → 结果
+- The user explicitly requests stronger distribution intensity
+- Account positioning permits strong expression
+- Topic facts have been verified
+- Outcomes and conditions are sufficiently supported
 
-必要使用专业概念时：
+Requirements:
 
-> 先让受众理解发生了什么，再补充专业名称。
+- Put the strongest valid information first
+- Reduce background and setup
+- Focus on only 1–2 core pressure points or benefit points
+- Preserve every key condition that could change the conclusion
+- Never increase aggression by introducing false facts
 
-不得在 Skill 中预设任意行业的固定术语、常用对象或表达词库。
+Principle:
 
----
+> 表达更强，是信息和后果更直接。  
+> Stronger expression means information and consequences are more direct.
 
-## 16. 人物表达
-
-人物感必须从账号定位中动态继承。
-
-人物参数可以影响：
-
-- 直接程度
-- 解释程度
-- 情绪强度
-- 幽默程度
-- 吐槽程度
-- 反问使用
-- 类比方式
-- 判断语气
-- 句子节奏
-- 称呼方式
-- 互动方式
-
-人物表现必须服务信息。
-
-不得通过以下方式机械表演人设：
-
-- 重复固定口头禅
-- 强行加入段子
-- 机械增加称呼
-- 连续反问
-- 堆叠网络流行语
-- 模仿与账号身份不符的语气
-- 为了有个性牺牲事实准确性
-
-原则：
-
-> 人物感来自看问题和说问题的方式。
-
-> 不来自固定词语。
+> 不是情绪和措辞更夸张。  
+> It does NOT mean more exaggerated emotions or wording.
 
 ---
 
-## 17. 语言质量
+## 11. First-Screen Rules（第一屏规则）
 
-出现以下特征时应优先重写：
+The first screen is responsible for:
 
-- 模板化AI表达
-- 官方公文腔
-- 教材目录感
-- 过度专业化
-- 抽象概念堆叠
-- 无效情绪铺垫
-- 机械总结
-- 重复相同句型
-- 不符合账号人物身份
-- 现实中人物不会说出口
+- Retention（停留）
+- Immediate audience self-identification（对号入座）
+- Emotional activation（情绪启动）
+- Establishing the information gap（信息差建立）
 
-不得在通用 Skill 中写死某个账号的：
+Dynamically choose one structure:
 
-- 口头禅
-- 禁用词表
-- 推荐词表
-- 称呼方式
-- 幽默方式
-- 标题句型
-- CTA句型
+### Structure 1
+> Familiar behavior or scenario（熟悉的行为或场景）  
+> + Underestimated result（被低估的结果）
 
-这些内容必须来自具体账号定位。
+### Structure 2
+> Surface phenomenon（表面现象）  
+> + Real result（真实结果）
 
----
+### Structure 3
+> A small problem（一个小问题）  
+> + Amplified impact（放大后的影响）
 
-## 18. 视觉阅读规则
+### Structure 4
+> Specific number or fact（明确数字或事实）  
+> + Cognitive conflict（认知冲突）
 
-最终正文必须保留可直接用于文字播报的换行。
+### Structure 5
+> Common judgment（常见判断）  
+> + Direct correction（直接纠正）
 
-默认要求：
+The first screen MUST prioritize objects, behaviors, and results that the current account's audience can immediately understand.
 
-- 一行表达一个核心信息
-- 正文默认10—16行
-- 每行优先7—15个汉字
-- 重要数字、结果或判断可以单独成行
-- 条件、结果和逻辑变化处优先换行
-- 超过30字的句子必须检查能否拆分
-- 每个信息块建议2—4行
-- 第一屏最多4行，必须出现场景与核心冲突
-- 不连续使用两个以上的解释信息块
-- 结尾最多3行
-- 不把完整长段落交给后期自行拆分
-- 不为追求短句把完整语义切碎
+Do NOT open with emotion only and no information.
 
-Level 3只通过结论前置、结果直达和减少铺垫提高强度，不得因表达更强而增加正文篇幅。
+Do NOT open with vague background, greetings, course-style introductions, or template reminders.
 
-如果账号定位另有视觉节奏要求，以账号定位为准。
-
-默认不使用固定数量的编号清单。
-
-仅当并列信息、步骤或检查项更适合扫描时使用编号。
+The first screen may postpone non-critical conditions, but MUST NOT conceal any condition that would change the conclusion.
 
 ---
 
-## 19. 标题生成
+## 12. Main-Copy Logic（正文逻辑）
 
-标题必须同时符合：
+Default main-copy structure: single-point, high-density（单点高密度）.
 
-- 当前账号人物气质
-- 当前目标受众语言
-- 当前主题最强信息点
-- 当前表达强度
-- 事实与平台边界
+> Specific scenario or cognitive conflict（具体场景或认知冲突）  
+> → Core judgment + necessary conditions（核心判断与必要条件）  
+> → One result or action direction（一个结果或行动方向）
 
-生成标题前，内部提取：
+Before generating, internally determine:
 
-- 最强有效结果
-- 最大信息差
-- 最明显认知冲突
-- 最容易放大的影响
-- 最具体的行为或场景
-- 最有价值的数字或条件
-- 最符合账号定位的情绪动力
+1. What does the audience already know?
+2. What new information does this piece add?
+3. Why does this result occur?
+4. What does the result affect?
+5. What does the audience most need to judge or check now?
 
-不得因为主题中存在专业词，就自动把专业词作为标题中心。
+These questions are for internal logic validation. Do NOT mechanically expose all of them in the final copy.
 
-标题不能为了冲击删除会改变结论的关键条件。
+The final main copy should retain ONLY information necessary for the current core judgment.
+
+Do NOT merely restate obvious phenomena. Do NOT expand multiple logical threads just for completeness.
 
 ---
 
-## 20. 标题方向
+## 13. Main-Copy Modes（正文模式）
 
-完整文案默认输出三个明显不同方向的标题。
+Automatically choose based on the topic. Do NOT lock into one template over time.
 
-### 方向一｜结果影响型
+### Result-First（结果直击型）
+> Result → Cause → Condition → Scope of impact → Judgment direction
 
-突出最值得关注的真实结果、收益、损失或变化。
+### Cognitive Reversal（认知翻转型）
+> Common judgment → Direct correction → Key condition → Real result
 
-### 方向二｜认知冲突型
+### Accumulation Upgrade（累积升级型）
+> Current phenomenon → Accumulation method → Amplified result → Current check point
 
-突出受众原有判断与真实情况之间的差异。
+### Chain Propagation（链条传导型）
+> Starting issue → Intermediate impact → Final landing point → Judgment direction
 
-### 方向三｜累积或决策型
+### Numeric Comparison（数字对比型）
+> Number or ratio → Direct difference → Hidden condition → Final result
 
-突出影响如何扩大，或者不同选择会产生什么差异。
+### Decision Comparison（决策比较型）
+> Two choices → Core difference → Respective outcomes → Decision standard
 
-如果账号定位存在更明确的标题体系，应优先使用账号自己的标题体系，不强制套用以上三个方向。
+### Event Impact（事件影响型）
+Use ONLY when the event, policy, or platform change has been verified:
 
-标题不得只说明“这篇内容讲什么”，必须提供继续阅读的理由。
+> Real event → Affected audience → What changed → Specific impact → Current judgment
 
----
-
-## 21. 常规标题与短标题
-
-完整文案可另输出：
-
-### 常规标题
-
-用于清楚说明主题和搜索识别。
-
-要求：
-
-- 明确对象
-- 明确场景
-- 明确核心问题
-- 自然包含相关关键词
-- 不故意制造夸张
-
-### 短标题
-
-默认要求：
-
-- 16个汉字以内
-- 不使用复杂标点
-- 保留核心冲突、结果或信息差
-
-账号定位另有要求时，以账号定位为准。
+Do NOT invent trends, changes, actions, or outcomes merely to fit an event-based template.
 
 ---
 
-## 22. 结尾与互动
+## 14. Information Density（信息密度）
 
-结尾不强制提问，也不强制转发提示。
+Every sentence MUST perform at least one function:
 
-根据账号定位、主题和内容目的动态选择：
+- Provide a fact
+- Give a number
+- Identify an object/audience
+- Describe a behavior
+- Provide an information gap
+- Explain a cause
+- State a condition
+- Develop an impact
+- Provide a judgment
+- Point to an action direction
 
-- 一句核心判断
-- 一个当前行动
-- 一个检查方向
-- 一个具体问题
-- 一个未完全展开的判断空间
-- 一句符合人物气质的收束
-- 一个自然的分享理由
+If removing a sentence does not reduce the information gained by the audience, remove it first.
 
-不得所有账号统一使用同一种CTA。
+Low-value content includes:
 
-不得默认加入：
-
-- 强制转发
-- 强制收藏
-- 情绪绑架
-- 虚构资料领取
-- 虚构福利
-- 联系方式
-- 未经用户要求的导流方式
-
-CTA必须服从当前账号定位和平台边界。
-
----
-
-## 23. 长度控制
-
-如果账号定位规定正文长度，优先执行账号要求。
-
-用户提供参考篇幅时，以用户的参考篇幅为最高优先级。
-
-未规定时，默认正文约90—130字。
-
-规则条件、专业判断或业务链路较复杂时，优先缩小切口，只讲一个核心判断。确实无法压缩时可放宽至160字，但不得默认扩展至200字以上。
-
-主题复杂时可以适当增加，但必须检查：
-
-- 是否重复受众已知信息
-- 是否背景过多
-- 是否存在无效铺垫
-- 是否一次讲得过于完整
-- 是否有可以删除的连接句
-- 是否存在过长句子
-- 是否为了显得专业增加无用内容
-
-原则：
-
-> 用最少必要文字传递最多有效信息。
+- Vague reminders
+- Repeated conclusions
+- Meaningless setup
+- Pure emotional expression
+- Transitions that add no new information
+- Background unrelated to the core judgment
+- Persona performance that carries no informational function
+- Repeating phenomena the audience already knows
 
 ---
 
-## 23.1 单篇信息上限
+## 15. Audience Language（受众语言）
 
-默认限制：
+Expression MUST be dynamically inherited from the current account positioning.
 
-- 每篇只表达一个核心结论
-- 核心压力点或利益点最多一个
-- 显性展开的判断条件最多三个
-- 专业名词最多解释一个
-- 结果、风险或行动方向只保留一个
-- 同一结论不得使用不同措辞重复表达
-- 不为了体现专业性而补全所有背景、条件或操作步骤
+Prioritize:
 
-涉及多个必要条件时，只展开与当前场景直接相关的条件；其余使用简短的条件边界保留进一步判断空间，不得因压缩而隐瞒会改变结论的关键条件。
+- Language the target audience uses in daily life
+- Objects familiar to the target audience
+- Real life or business scenarios
+- Results the audience can directly perceive
+- Judgment methods consistent with the persona identity
 
----
+Professional expression SHOULD be translated into a structure the audience can understand:
 
-## 24. 事实与核验
+> 行为 → 变化 → 结果  
+> Behavior → Change → Result
 
-用户提供的案例、竞品内容和参考资料只能提取：
+When a professional concept is necessary:
 
-- 事实
-- 场景
-- 数据
-- 判断逻辑
-- 表达方法
+> 先让受众理解发生了什么，再补充专业名称。  
+> First help the audience understand what happened, then add the professional term.
 
-不得：
-
-- 原文照抄
-- 简单换词
-- 虚构案例
-- 虚构人物
-- 虚构数据
-- 虚构结果
-- 虚构事件
-- 虚构趋势
-- 把个别情况写成普遍规则
-
-涉及可能变化或需要确定性判断的信息时，必须核验当前有效的权威来源。
-
-包括但不限于：
-
-- 政策
-- 法律法规
-- 平台规则
-- 产品规则
-- 办理条件
-- 价格
-- 时间期限
-- 处罚或责任
-- 地方规定
-- 行业标准
-- 当前事件
-- 统计数据
-
-无法确认时，不得写成确定事实。
-
-不得：
-
-- 把局部情况写成普遍情况
-- 把可能写成必然
-- 把历史信息包装成当前变化
-- 把风险写成已经发生
-- 把推测写成官方结论
+Do NOT hard-code fixed terminology, common objects, or vocabulary for any industry inside this general Skill.
 
 ---
 
-## 25. 强表达边界
+## 16. Persona Expression（人物表达）
 
-强表达必须满足：
+Persona feel（人物感）MUST be dynamically inherited from account positioning.
 
-- 事实真实
-- 对象范围准确
-- 因果关系成立
-- 条件没有被隐瞒
-- 结果有证据支持
-- 不超出账号定位允许的强度
+Persona parameters may affect:
 
-禁止无依据使用：
+- Directness
+- Degree of explanation
+- Emotional intensity
+- Humor intensity
+- 吐槽 intensity
+- Use of rhetorical questions
+- Analogy style
+- Judgment tone
+- Sentence rhythm
+- Forms of address（称呼方式）
+- Interaction style
 
-- 绝对化判断
-- 普遍化判断
-- 必然结果
-- 虚假紧迫感
-- 虚构权威背书
-- 虚构内部信息
-- 无条件承诺
-- 保证性结果
-- 不存在的风险或收益
+Persona performance MUST serve the information.
 
-原则：
+Do NOT mechanically perform persona through:
 
-> 可以把真实影响说重。
+- Repeating fixed catchphrases
+- Forcing jokes
+- Mechanically adding forms of address
+- Continuous rhetorical questions
+- Stacking internet slang
+- Mimicking a tone inconsistent with account identity
+- Sacrificing factual accuracy for personality
 
-> 不能把不存在的影响说出来。
+Principle:
 
----
+> 人物感来自看问题和说问题的方式。  
+> Persona comes from how the person sees and explains the problem.
 
-## 26. 生成前内部判断
-
-正式写作前必须内部确认：
-
-1. 当前账号是谁？
-2. 当前账号面对谁表达？
-3. 当前内容的转化目标是什么？
-4. 受众已经知道什么？
-5. 本篇新增的信息是什么？
-6. 最强且真实的结果是什么？
-7. 影响如何形成或扩大？
-8. 哪个条件决定结论是否成立？
-9. 最适合当前账号的情绪动力是什么？
-10. 用户为什么可能愿意分享？
-11. 当前人物现实中会不会这样说？
-12. 是否有足够事实支撑当前表达强度？
-
-如果缺少有效信息差或真实影响，不得使用情绪伪造传播强度。
+> 不来自固定词语。  
+> It does not come from fixed words.
 
 ---
 
-## 27. 质量控制
+## 17. Language Quality（语言质量）
 
-出现以下问题应自动重写：
+Rewrite first when any of the following appear:
 
-- 第一屏没有有效信息
-- 前两行只有情绪
-- 只重复受众已经知道的现象
-- 没有有效信息差
-- 没有具体结果或利益
-- 没有说明影响如何形成
-- 强表达没有事实依据
-- 条件足以改变结论却被省略
-- 全文平铺直叙
-- 全文像文章、报告或培训材料
-- 大量专业表达没有转换
-- 句子过长，不适合逐行显示
-- 机械使用固定编号
-- 机械使用统一CTA
-- 只靠标点和口号制造情绪
-- 人物表达与账号定位冲突
-- 使用了其他账号的业务语言或人物特征
-- 为了传播虚构事实、结果或趋势
-- 同时展开两个以上的核心结论
-- 显性罗列超过三个判断条件
-- 同一结论、影响或提醒重复表达
-- 为了完整而加入规则背景、定义或无关检查项
-- 正文超过默认篇幅却没有先尝试缩小切口
+- Template-like AI phrasing（模板化AI表达）
+- Official bureaucratic tone（官方公文腔）
+- Textbook-outline feel（教材目录感）
+- Excessive professionalism
+- Stacked abstract concepts
+- Ineffective emotional setup
+- Mechanical summaries
+- Repeated sentence patterns
+- Language inconsistent with account persona
+- Wording a real person with this persona would not naturally say
 
-完稿后执行一次强制删减，按以下顺序处理：
+Do NOT hard-code account-specific items into this general Skill, including:
 
-1. 删除重复结论。
-2. 删除规则背景和定义式说明。
-3. 删除不改变核心判断的条件。
-4. 删除纯承上启下的句子。
-5. 删除第二个以上的结果提醒或CTA。
-6. 超过130字时，优先缩小内容范围，不得通过压缩句子硬塞信息。
+- Catchphrases
+- Banned-word lists
+- Recommended-word lists
+- Forms of address
+- Humor methods
+- Title sentence patterns
+- CTA sentence patterns
+
+All of these MUST come from the specific account positioning.
 
 ---
 
-## 28. 核心评分
+## 18. Visual Reading Rules（视觉阅读规则）
 
-### 信息差：1—5
+The final main copy MUST preserve line breaks that can be directly used for text-broadcast display（文字播报）.
 
-- 是否提供了受众原来不知道或低估的信息
-- 是否超越平淡复述
-- 是否存在关键条件、结果或认知差
+Default requirements:
 
-### 情绪与传播强度：1—5
+- One core information unit per line（一行表达一个核心信息）
+- Main copy defaults to 10–16 lines（正文默认10—16行）
+- Prefer 7–15 Chinese characters per line（每行优先7—15个汉字）
+- Important numbers, results, or judgments may occupy a standalone line
+- Prefer line breaks where conditions, results, or logic changes
+- Any sentence over 30 Chinese characters MUST be checked for splitting（超过30字必须检查能否拆分）
+- Recommend 2–4 lines per information block
+- First screen: maximum 4 lines, and MUST include scenario + core conflict（第一屏最多4行）
+- Do not use more than two explanatory information blocks consecutively
+- Ending: maximum 3 lines（结尾最多3行）
+- Do not hand a full long paragraph to post-production for later splitting
+- Do not fragment complete meaning merely to create shorter lines
 
-- 第一屏是否有冲击
-- 情绪是否来自真实信息
-- 是否让受众重新评估主题的重要性
+Level 3 may increase intensity ONLY through conclusion-first ordering, direct outcomes, and reduced setup. It MUST NOT increase main-copy length merely because the expression is stronger.
 
-### 分享价值：1—5
+If the account positioning defines a different visual rhythm, follow the account positioning.
 
-- 是否具有提醒、讨论、解释或身份表达价值
-- 是否可能自然引发分享
-- 是否依赖强制转发话术
+Do not default to fixed-count numbered lists.
 
-### 阅读效率：1—5
-
-- 是否快速看懂
-- 信息顺序是否清晰
-- 每行是否适合视觉阅读
-- 是否存在复杂长句
-
-### 账号一致性：1—5
-
-- 是否符合当前账号身份
-- 是否符合人物语言习惯
-- 是否符合目标受众理解能力
-- 是否符合账号转化目标
-
-### 转化能力：1—5
-
-- 是否让目标受众对号入座
-- 是否体现有效判断
-- 是否留下合理的进一步了解空间
-- 是否自然连接账号目标
-
-### 平台风险：低 / 中 / 高
-
-检查：
-
-- 事实风险
-- 绝对化风险
-- 虚假情绪
-- 权威误导
-- 互动诱导
-- 导流
-- 服务或结果承诺
-
-除平台风险外，任一评分低于3分，应优先重写。
+Use numbering ONLY when parallel information, steps, or check items are genuinely easier to scan that way.
 
 ---
 
-## 29. 输出模式
+## 19. Title Generation（标题生成）
 
-根据用户请求选择，不得强制输出无关内容。
+Every title MUST simultaneously fit:
 
-### 用户只要标题
+- Current persona style
+- Current target-audience language
+- Strongest valid information point in the topic
+- Current expression intensity
+- Fact and platform boundaries
 
-只输出标题方案。除非用户要求，不附思路或评分。
+Before generating titles, internally extract:
 
-### 用户只要正文
+- Strongest valid outcome（最强有效结果）
+- Largest information gap（最大信息差）
+- Most obvious cognitive conflict
+- Impact most suitable for amplification
+- Most concrete behavior or scenario
+- Most valuable number or condition
+- Emotional driver most consistent with account positioning
 
-只输出最终正文。默认不附内容模式、评分、风险分析或创作说明。只有存在必须向用户披露的事实风险或核验限制时，才在正文后补充一句简短说明。
+Do NOT automatically center the title on a professional term merely because the topic contains one.
 
-### 用户要完整文案
-
-默认只输出：
-
-1. 三个明显不同方向的标题。
-2. 一个常规标题。
-3. 一个短标题。
-4. 按最终文字播报换行格式输出的正文。
-
-内容模式、标题思路、核心评分和风险分析仅作为内部质量控制，除非用户明确要求，不对外输出。
-
-不输出：
-
-- 创作过程
-- 内部判断过程
-- 人设参数清单
-- 长篇来源列表
-- 无关选题
-- 视觉制作方案
-- 归档操作
-- 未经要求的扩展内容
+Do NOT remove a key condition that would change the conclusion merely to make the title more impactful.
 
 ---
 
-## 30. 最终原则
+## 20. Title Directions（标题方向）
 
-> 每次先读取当前账号，再决定怎么写。
+For a complete copy package, DEFAULT to three clearly different title directions.
 
-> 不在 Skill 中写死行业、业务、人群和人物。
+### Direction 1 | Outcome Impact（结果影响型）
+Highlight the most important real result, benefit, loss, or change.
 
-> 不在 Skill 中写死固定词语、口头禅和CTA。
+### Direction 2 | Cognitive Conflict（认知冲突型）
+Highlight the difference between the audience's prior belief and the actual situation.
 
-> 不重复受众已经知道的事情。
+### Direction 3 | Accumulation or Decision（累积或决策型）
+Highlight how impact grows, or how different choices produce different outcomes.
 
-> 每篇至少提供一个有效信息差。
+If the account positioning defines a clearer title system, prioritize the account's own title system. Do NOT force these three directions.
 
-> 情绪必须来自真实信息。
+A title MUST NOT merely state “what this content is about.” It MUST provide a reason to continue reading.
 
-> 允许强化真实影响，不制造虚假恐慌。
+---
 
-> 条件可以分层说明，但不能故意隐瞒。
+## 21. Standard Title and Short Title（常规标题与短标题）
 
-> 分享动力来自内容价值，不来自强制转发。
+A complete package may additionally output:
 
-> 专业信息留在底层，受众语言放在表层。
+### Standard Title（常规标题）
+Used to clearly describe the topic and support search recognition.
 
-> 标题负责制造停留理由。
+Requirements:
 
-> 第一屏负责建立信息差和情绪动力。
+- Clear object/audience
+- Clear scenario
+- Clear core problem
+- Naturally include relevant keywords
+- Do not intentionally exaggerate
 
-> 正文负责说明影响如何形成。
+### Short Title（短标题）
 
-> 结尾服从账号定位和转化目标。
+Default requirements:
 
-> 文字播报必须按视觉阅读方式交付。
+- Within 16 Chinese characters（16个汉字以内）
+- Avoid complex punctuation
+- Preserve the core conflict, result, or information gap
 
-最终内容应具备：
+If the account positioning defines different requirements, follow the account positioning.
 
-> 有效信息差  
-> + 真实影响  
-> + 合适情绪  
-> + 快速阅读  
-> + 分享价值  
-> + 人物辨识度  
-> + 账号一致性  
-> + 转化能力  
-> + 事实可信度
+---
+
+## 22. Ending and Interaction（结尾与互动）
+
+Do NOT force a question at the end. Do NOT force a forwarding prompt.
+
+Dynamically choose based on account positioning, topic, and content objective:
+
+- One core judgment
+- One current action
+- One check direction
+- One specific question
+- One partially open judgment space
+- One persona-consistent closing line
+- One natural reason to share
+
+Do NOT unify all accounts under one CTA.
+
+Do NOT add by default:
+
+- Forced forwarding（强制转发）
+- Forced saving（强制收藏）
+- Emotional coercion（情绪绑架）
+- Fabricated material/资料 claims（虚构资料领取）
+- Fabricated benefits（虚构福利）
+- Contact information（联系方式）
+- Traffic diversion / 导流 methods not requested by the user（未经用户要求的导流方式）
+
+CTA MUST obey the current account positioning and platform boundaries.
+
+---
+
+## 23. Length Control（长度控制）
+
+If account positioning defines main-copy length, follow that first.
+
+If the user provides a reference length, the user's reference length has the highest priority.
+
+If unspecified, default main-copy length is approximately 90–130 Chinese characters（约90—130字）.
+
+When rules, professional judgments, or business chains are complex, first narrow the angle and explain only one core judgment. If compression is genuinely impossible, expand up to about 160 Chinese characters, but do NOT default to 200+ characters.
+
+For complex topics, length may increase moderately, but ALWAYS check:
+
+- Is known information being repeated?
+- Is there too much background?
+- Is there ineffective setup?
+- Is the piece trying to explain too much at once?
+- Can connective sentences be removed?
+- Are there overly long sentences?
+- Is useless content being added merely to look professional?
+
+Principle:
+
+> 用最少必要文字传递最多有效信息。  
+> Use the minimum necessary words to deliver the maximum useful information.
+
+---
+
+## 23.1 Per-Piece Information Limit（单篇信息上限）
+
+Default limits:
+
+- Only one core conclusion per piece（每篇只表达一个核心结论）
+- At most one core pressure point OR benefit point
+- At most three explicitly expanded judgment conditions（显性展开的判断条件最多三个）
+- Explain at most one professional term
+- Keep only one result, risk, or action direction
+- Do not repeat the same conclusion using different wording
+- Do not complete every background condition or operational step merely to appear professional
+
+When multiple necessary conditions exist, explicitly expand only those directly relevant to the current scenario. Preserve the rest as brief condition boundaries for further judgment. Compression MUST NOT conceal any condition that could change the conclusion.
+
+---
+
+## 24. Facts and Verification（事实与核验）
+
+From user-provided cases, competitor content, and reference materials, extract ONLY:
+
+- Facts
+- Scenarios
+- Data
+- Judgment logic（判断逻辑）
+- Expression methods
+
+Do NOT:
+
+- Copy original wording verbatim
+- Perform superficial word substitution
+- Fabricate cases
+- Fabricate people
+- Fabricate data
+- Fabricate results
+- Fabricate events
+- Fabricate trends
+- Generalize an individual case into a universal rule
+
+Whenever information may change over time or requires a deterministic judgment, the Skill MUST verify a currently valid authoritative source.
+
+This includes, but is not limited to:
+
+- Policies（政策）
+- Laws and regulations（法律法规）
+- Platform rules（平台规则）
+- Product rules
+- Processing / eligibility conditions（办理条件）
+- Prices
+- Time limits / deadlines（时间期限）
+- Penalties or liabilities（处罚或责任）
+- Local rules
+- Industry standards
+- Current events
+- Statistical data
+
+If it cannot be confirmed, do NOT state it as a definite fact.
+
+Do NOT:
+
+- Present a local/partial situation as universal
+- Present a possibility as certainty（把可能写成必然）
+- Package historical information as a current change
+- Present a risk as if it has already happened
+- Present speculation as an official conclusion
+
+---
+
+## 25. Boundaries for Strong Expression（强表达边界）
+
+Strong expression is allowed ONLY when:
+
+- Facts are true
+- Audience/object scope is accurate
+- Causal relationship is valid
+- Conditions are not concealed
+- Outcomes are evidence-supported
+- Intensity does not exceed what account positioning allows
+
+Do NOT use without evidence:
+
+- Absolute judgments（绝对化判断）
+- Universalized judgments（普遍化判断）
+- Inevitable outcomes（必然结果）
+- False urgency（虚假紧迫感）
+- Fabricated authority endorsements（虚构权威背书）
+- Fabricated insider information（虚构内部信息）
+- Unconditional promises（无条件承诺）
+- Guaranteed outcomes（保证性结果）
+- Nonexistent risks or benefits
+
+Principle:
+
+> 可以把真实影响说重。  
+> You may emphasize a real impact strongly.
+
+> 不能把不存在的影响说出来。  
+> You may NOT invent an impact that does not exist.
+
+---
+
+## 26. Internal Pre-Generation Judgment（生成前内部判断）
+
+Before formal writing, internally confirm:
+
+1. Who is the current account/persona?（当前账号是谁？）
+2. Who is the account speaking to?（当前账号面对谁表达？）
+3. What is the conversion objective of this content?（当前内容的转化目标是什么？）
+4. What does the audience already know?
+5. What new information does this piece add?
+6. What is the strongest REAL outcome?
+7. How does the impact form or amplify?
+8. Which condition determines whether the conclusion holds?
+9. Which emotional driver best fits the current account?
+10. Why might the audience naturally want to share?
+11. Would this persona actually say it this way in real life?
+12. Is there enough factual support for the current expression intensity?
+
+If there is no effective information gap or real impact, do NOT use emotion to fake distribution intensity.
+
+---
+
+## 27. Quality Control（质量控制）
+
+Automatically rewrite if ANY of the following problems appear:
+
+- The first screen contains no useful information
+- The first two lines contain only emotion
+- The copy only repeats phenomena the audience already knows
+- No effective information gap
+- No specific result or benefit
+- No explanation of how the impact forms
+- Strong expression lacks factual support
+- A condition capable of changing the conclusion is omitted
+- Entire piece is flat and linear
+- Entire piece reads like an article, report, or training material
+- Large amounts of professional language remain untranslated into audience language
+- Sentences are too long for line-by-line display
+- Fixed numbering is used mechanically
+- A unified CTA is used mechanically
+- Emotion depends only on punctuation and slogans
+- Persona expression conflicts with account positioning
+- Business language or persona traits from another account are used
+- Facts, results, or trends are fabricated for distribution performance
+- More than one core conclusion is developed simultaneously
+- More than three judgment conditions are explicitly listed
+- The same conclusion, impact, or reminder is repeated
+- Rule background, definitions, or unrelated check items are added for completeness
+- Main copy exceeds the default length without first attempting to narrow the angle
+
+After drafting, perform ONE mandatory reduction pass（强制删减）in this order:
+
+1. Remove repeated conclusions.
+2. Remove rule background and definition-style explanation.
+3. Remove conditions that do not change the core judgment.
+4. Remove pure transition sentences.
+5. Remove the second and later result reminders or CTAs.
+6. If the copy exceeds 130 Chinese characters, narrow the content scope first. Do NOT cram information by mechanically shortening sentences.
+
+---
+
+## 28. Core Scoring（核心评分）
+
+### Information Gap（信息差）: 1–5
+
+Check:
+
+- Does it provide information the audience did not know or underestimated?
+- Does it go beyond plain repetition?
+- Is there a meaningful condition, result, or cognitive difference?
+
+### Emotional / Distribution Intensity（情绪与传播强度）: 1–5
+
+Check:
+
+- Does the first screen create impact?
+- Does emotion come from real information?
+- Does it make the audience reassess the importance of the topic?
+
+### Share Value（分享价值）: 1–5
+
+Check:
+
+- Does it have reminder, discussion, explanation, or identity-expression value?
+- Could it naturally trigger sharing?
+- Does it rely on forced-forward wording?
+
+### Reading Efficiency（阅读效率）: 1–5
+
+Check:
+
+- Can it be understood quickly?
+- Is information order clear?
+- Is each line suitable for visual reading?
+- Are there complex long sentences?
+
+### Account Consistency（账号一致性）: 1–5
+
+Check:
+
+- Does it fit the current account identity?
+- Does it fit persona language habits?
+- Does it fit target-audience comprehension?
+- Does it fit the account's conversion objective?
+
+### Conversion Capability（转化能力）: 1–5
+
+Check:
+
+- Can the target audience recognize that the content applies to them（对号入座）?
+- Does the copy demonstrate useful judgment capability?
+- Does it leave reasonable room for further understanding?
+- Does it naturally connect to the account objective?
+
+### Platform Risk（平台风险）: Low / Medium / High（低 / 中 / 高）
+
+Check:
+
+- Fact risk（事实风险）
+- Absolute-claim risk（绝对化风险）
+- False emotion / manufactured fear（虚假情绪）
+- Authority misrepresentation（权威误导）
+- Interaction inducement（互动诱导）
+- Traffic diversion / 导流
+- Service or outcome promises（服务或结果承诺）
+
+Except for platform risk, if ANY score is below 3, rewrite first.
+
+---
+
+## 29. Output Modes（输出模式）
+
+Choose output strictly according to the user's request. Do NOT force unrelated output.
+
+### If the user asks only for titles（用户只要标题）
+
+Output ONLY title options. Do not include rationale or scores unless requested.
+
+### If the user asks only for main copy（用户只要正文）
+
+Output ONLY the final main copy（正文）.
+
+By default, do NOT include content mode, scores, risk analysis, or creative explanation.
+
+Only when there is a factual risk or verification limitation that MUST be disclosed to the user, add ONE brief note after the main copy.
+
+### If the user asks for a complete copy package（用户要完整文案）
+
+DEFAULT output ONLY:
+
+1. Three titles in clearly different directions
+2. One standard title（常规标题）
+3. One short title（短标题）
+4. Main copy formatted with final text-broadcast line breaks（按最终文字播报换行格式输出的正文）
+
+Content mode, title rationale, core scoring, and risk analysis are INTERNAL quality-control information. Do NOT expose them unless the user explicitly asks.
+
+Do NOT output:
+
+- Creative process
+- Internal reasoning process（内部判断过程）
+- Persona parameter checklist
+- Long source lists
+- Unrelated topic ideas
+- Visual production plans
+- Archive operations
+- Unrequested expansion
+
+---
+
+## 30. Final Principles（最终原则）
+
+> 每次先读取当前账号，再决定怎么写。  
+> Read the current account first, then decide how to write.
+
+> 不在 Skill 中写死行业、业务、人群和人物。  
+> Do not hard-code industry, business, audience, or persona into the Skill.
+
+> 不在 Skill 中写死固定词语、口头禅和CTA。  
+> Do not hard-code fixed words, catchphrases, or CTAs into the Skill.
+
+> 不重复受众已经知道的事情。  
+> Do not repeat what the audience already knows.
+
+> 每篇至少提供一个有效信息差。  
+> Every piece must provide at least one effective information gap.
+
+> 情绪必须来自真实信息。  
+> Emotion must come from real information.
+
+> 允许强化真实影响，不制造虚假恐慌。  
+> Strengthen real impact; do not manufacture false fear.
+
+> 条件可以分层说明，但不能故意隐瞒。  
+> Conditions may be layered, but never intentionally concealed.
+
+> 分享动力来自内容价值，不来自强制转发。  
+> Sharing motivation must come from content value, not forced forwarding.
+
+> 专业信息留在底层，受众语言放在表层。  
+> Keep professional logic underneath; present audience language on the surface.
+
+> 标题负责制造停留理由。  
+> Titles create a reason to stop and continue reading.
+
+> 第一屏负责建立信息差和情绪动力。  
+> The first screen establishes the information gap and emotional drive.
+
+> 正文负责说明影响如何形成。  
+> Main copy explains how the impact forms.
+
+> 结尾服从账号定位和转化目标。  
+> The ending must obey account positioning and conversion objectives.
+
+> 文字播报必须按视觉阅读方式交付。  
+> Text-broadcast copy must be delivered for visual reading.
+
+Final content should contain:
+
+> Effective information gap（有效信息差）  
+> + Real impact（真实影响）  
+> + Appropriate emotion（合适情绪）  
+> + Fast reading（快速阅读）  
+> + Share value（分享价值）  
+> + Persona recognizability（人物辨识度）  
+> + Account consistency（账号一致性）  
+> + Conversion capability（转化能力）  
+> + Factual credibility（事实可信度）
